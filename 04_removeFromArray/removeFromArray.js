@@ -5,8 +5,12 @@ const removeFromArray = function(arr=[], ...args) {
 
     /*create a new array to hold the remaining elements after removing the
     elements specified by the arguments*/
+
+    /*Filter calls the callback function on each element of the array
+    provided to it and creates a new array containing elements that the
+    function evaluates as true*/
     const newArray = arr.filter(function(i){        
-        return !newArgs.includes(i);
+        return !newArgs.includes(i); //if an element is not present in newArgs it's added        
     });
     
     //return the new array that doesn't include those removed
