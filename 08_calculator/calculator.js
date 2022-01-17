@@ -33,6 +33,7 @@ const factorial = function(num) {
   } else if (num === 1) {
     return 1; 
   } else {
+    //recursive call of factorial function
     return (num * factorial(num - 1));
   }
 };
