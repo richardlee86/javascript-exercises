@@ -1,10 +1,20 @@
 const findTheOldest = function(array) {
     this.array = array;
     let oldestPerson = 0; //variable to hold age of oldest person
+    let currentYear = new Date().getFullYear();
 
     //variable to loop through array of objects and push the age values to an array
+    /*This variable loops through an array of objects, calculates the age of the 
+    person, and pushes the value to a new array
+    if the yearOfDeath property doesn't exist, the birth year is subtracted from the current year
+    and pushed to the new array */
     let age = array.reduce((arr, array) => {        
-        arr.push(Math.max(array.yearOfDeath - array.yearOfBirth));
+        this.currentYear = currentYear;       
+        if(array.yearOfDeath === undefined){
+            arr.push(currentYear - array.yearOfBirth);
+        } else {
+            arr.push(Math.max(array.yearOfDeath - array.yearOfBirth));
+        }       
         return arr;
     },[]);     
     
@@ -16,18 +26,18 @@ const findTheOldest = function(array) {
     }); 
 
     //loop through array and compare ages to birthYears and deathYears
-    //if deathYear is null return that person.name
-    //if deathYear - birthYear equals our oldest person, return array.name
+    //if deathYear is undefined and equal to oldestPerson return that person
+    //if deathYear - birthYear equals our oldest person, return that person
 
-    for (let i = 0; i < array.length; i++) {
-        if ('yearOfDeath' in array[i] === false) {
-            return array[i].name; 
-        } else if(array[i].yearOfDeath - array[i].yearOfBirth === oldestPerson){
-            return array[i].name; 
-        }else {
-            continue;
-        }
-        
+    for (let i = 0; i < array.length; i++) {        
+        if (array[i].yearOfDeath === undefined && 
+            currentYear - array[i].yearOfBirth === oldestPerson) {
+           return array[i];
+        } else if (array[i].yearOfDeath - array[i].yearOfBirth === oldestPerson){
+            return array[i]
+        } else {
+            continue
+        }        
     }
 };
 
